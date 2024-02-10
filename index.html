@@ -1,1 +1,63 @@
-!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="goOnline()"> Click now</button>
+  
+   <script src="server.mjs"></script>
+</body>
+<script>
+
+let theObjects = {
+first: {
+  name: "one",
+  price: 50,
+  desc: "white",
+  from: "1"
+              },
+
+second: {
+  name: "two",
+  price: 30,
+  desc: "red",
+  item: "2"
+          },
+
+third: {
+  name: "three",
+  price: 50,
+  desc: "green",
+  from: "3"
+            },
+
+fourth: {
+  name: "four",
+  price: 40,
+  desc: "blue",
+  from:"4"
+           }
+}
+localStorage.setItem("goods", JSON.stringify(theObjects));
+let storedValue = JSON.parse(localStorage.getItem("goods"));
+let everyThing = Object.values(storedValue);
+/*
+everyThing.map(item => {
+  console.log(item.desc)
+})
+console.log(everyThing)
+*/
+
+
+function goOnline(){
+console.log("clicked")
+}
+
+
+
+</script>
+</html>
