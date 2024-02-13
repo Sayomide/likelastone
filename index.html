@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  <button onclick="goOnline()"> Click now</button>
+  <button onclick="goOnline()"> Click now </button>
   
    <script src="server.mjs"></script>
 </body>
@@ -42,22 +42,50 @@ fourth: {
   from:"4"
            }
 }
-localStorage.setItem("goods", JSON.stringify(theObjects));
-let storedValue = JSON.parse(localStorage.getItem("goods"));
-let everyThing = Object.values(storedValue);
+sessionStorage.setItem("goods", JSON.stringify(theObjects));
+
+
 /*
-everyThing.map(item => {
-  console.log(item.desc)
+let gooods = [ 
+{ name: "one", price: 50, desc: "white", from: "1" }, 
+{ name: "two", price: 100, desc: "red", from: "2" },
+{ name:"three", price:150, desc: "green", from: "3" },
+{ name: "four", price: 200, desc: "blue", from: "4" }           ];
+
+gooods.forEach((item, index) => {
+ console.log(index, item)
 })
-console.log(everyThing)
 */
 
 
-function goOnline(){
-console.log("clicked")
+/*
+const valuue = Object.values(gooods).map(value => JSON.parse(JSON.stringify(value)));
+console.log(valuue);
+*/
+
+
+
+
+
+
+function goOnline() {
+  
+fetch("/stripe-checkout", {
+    method: "POST",
+    headers: new Headers({'Content-Type': "application/json"}),
+    body: JSON.stringify({
+     items: Object.values(JSON.parse(sessionStorage.getItem("goods")))
+    })
+  })
+  .then(res => res.json())
+  .then(url => {
+    console.log(url);
+  }).catch(err => {
+    console.log("error:", err)
+  })
+ 
 }
-
-
 
 </script>
 </html>
+
