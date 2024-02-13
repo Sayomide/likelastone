@@ -4,7 +4,7 @@ const app = express();
 
 let theStripeGateway = stripe("sk_test_51OScz1FDiGCp6miEnWUQfp7d0Jmd5phX3s2aQqi3Q1Ufbf0PHRWY7CbGemcgn5FUMpgCEpmoRTmWiJv2FQMIQrnx00vEP6MgQW");
 
-app.use(express.json()); 
+//app.use(express.json()); 
 
 app.post('/stripe-checkout', async (req,res) => {
   console.log("Request body:", req.body);
